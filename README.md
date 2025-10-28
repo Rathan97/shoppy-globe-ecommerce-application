@@ -256,7 +256,7 @@ shoppy-globe/
 
 ![Products API](shoppy-globe/src/assets/screenshots/image-9.png)
 
-- GET `/api/products/1` Fetch a product By Id
+- GET `/api/products/:id` Fetch a product By Id
 
 ![Product BY ID API ](shoppy-globe/src/assets/screenshots/image-10.png)
 
