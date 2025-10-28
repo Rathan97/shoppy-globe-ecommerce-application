@@ -18,7 +18,7 @@ function Footer() {
         <ul className="flex justify-center gap-8 mb-6 text-white">
           <li>
             <a
-              href="#home"
+              href="/"
               className="transition hover:text-teal-600 dark:hover:text-teal-300"
             >
               Home
@@ -26,7 +26,7 @@ function Footer() {
           </li>
           <li>
             <a
-              href="#products"
+              href="/Products"
               className="transition hover:text-teal-600 dark:hover:text-teal-300"
             >
               Products
