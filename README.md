@@ -220,21 +220,21 @@ shoppy-globe/
 
 - Product Details Page  
 
-![Product Details Page](/src/assets/screenshots/image.png)
+![Product Details Page](shoppy-globe/src/assets/screenshots/image.png)
 
 - Cart Page  
 
-![Cart Page](/src/assets/screenshots/image-1.png)
+![Cart Page](shoppy-globe/src/assets/screenshots/image-1.png)
 
 - Checkout Page  
 
-![Checkout Page-1](/src/assets/screenshots/image-2.png)
+![Checkout Page-1](shoppy-globe/src/assets/screenshots/image-2.png)
 
-![Checkout Page-2](/src/assets/screenshots/image-3.png)
+![Checkout Page-2](shoppy-globe/src/assets/screenshots/image-3.png)
 
 - Order Success Page  
 
-![Order Success Page](/src/assets/screenshots/image-4.png)
+![Order Success Page](shoppy-globe/src/assets/screenshots/image-4.png)
 
 ---
 ## 📸 API Testing Screenshots
@@ -243,45 +243,45 @@ shoppy-globe/
 
 - POST `/register`  Register a new user  
 
-![User Register API](/src/assets/screenshots/image-7.png)
+![User Register API](shoppy-globe/src/assets/screenshots/image-7.png)
 
 - POST  `/Login` Log in existing user 
 
-![User Login API](/src/assets/screenshots/image-8.png)
+![User Login API](shoppy-globe/src/assets/screenshots/image-8.png)
 
 
 ## Product API`s
 
 - GET `/api/products` Fetch all products
 
-![Products API](/src/assets/screenshots/image-9.png)
+![Products API](shoppy-globe/src/assets/screenshots/image-9.png)
 
 - GET `/api/products/1` Fetch a product By Id
 
-![Product BY ID API ](/src/assets/screenshots/image-10.png)
+![Product BY ID API ](shoppy-globe/src/assets/screenshots/image-10.png)
 
 
 ## Cart API`s
 
 - GET `/api/cart` Fetch all cart items of a user
 
-![Cart Fetch ITEMS API](/src/assets/screenshots/image-11.png)
+![Cart Fetch ITEMS API](shoppy-globe/src/assets/screenshots/image-11.png)
 
 - POST `/api/cart` Add an item to the cart
 
-![Cart Add Item API](/src/assets/screenshots/image-12.png)
+![Cart Add Item API](shoppy-globe/src/assets/screenshots/image-12.png)
 
 - PUT `/api/cart` Update quantity of an item
 
-![Cart update item API](/src/assets/screenshots/image-13.png)
+![Cart update item API](shoppy-globe/src/assets/screenshots/image-13.png)
 
 - DELETE `/api/cart` Delete a specific item in cart
 
-![Delete an item API](/src/assets/screenshots/image-14.png)
+![Delete an item API](shoppy-globe/src/assets/screenshots/image-14.png)
 
 - DELETE `/api/cart/clear` Delete all items in the cart
 
-![Clear Cart API](/src/assets/screenshots/image-15.png)
+![Clear Cart API](shoppy-globe/src/assets/screenshots/image-15.png)
 
 ---
 
