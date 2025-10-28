@@ -203,19 +203,19 @@ shoppy-globe/
 
 - Homepage  
 
-![Homepage](/src/assets/screenshots/Homepage.png)
+![Homepage](shoppy-globe/src/assets/screenshots/Homepage.png)
 
 - Login Page
 
-![Login Page](/src/assets/screenshots/image-5.png)
+![Login Page](shoppy-globe/src/assets/screenshots/image-5.png)
 
 - Signup Page 
 
-![Signup Page](/src/assets/screenshots/image-6.png)
+![Signup Page](shoppy-globe/src/assets/screenshots/image-6.png)
 
 - Products Page 
 
-![Products Page](/src/assets/screenshots/products.png)
+![Products Page](shoppy-globe/src/assets/screenshots/products.png)
 
 
 - Product Details Page  
