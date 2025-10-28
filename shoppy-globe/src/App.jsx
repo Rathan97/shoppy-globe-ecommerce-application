@@ -30,7 +30,6 @@ function App() {
         draggable
         pauseOnHover
         theme="colored"
-        
         className="custom-toast-container"
         toastClassName="custom-toast"
       />
