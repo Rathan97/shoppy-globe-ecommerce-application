@@ -1,61 +1,52 @@
-import { useEffect, useState } from 'react';
-import useProducts from '../utils/useProducts.js';
-import { setProducts } from '../redux/productSlice.js';
-import {useSelector}  from 'react-redux';
-import { useDispatch } from 'react-redux';
-import ProductItem from './ProductItem.jsx';
+import { useEffect, useState } from "react";
+import useProducts from "../utils/useProducts.js";
+import { setProducts } from "../redux/productSlice.js";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import ProductItem from "./ProductItem.jsx";
 import { filterProducts } from "../redux/productSlice";
-import { useParams } from 'react-router-dom';
-import ErrorMessage from './Errormessage.jsx';
+import { useParams } from "react-router-dom";
+import ErrorMessage from "./Errormessage.jsx";
 
+function ProductList() {
+  const { search } = useParams();
+  const dispatch = useDispatch();
 
-function ProductList(){
-    const {search} = useParams();
-        const dispatch = useDispatch();
+  const filtertedData = useSelector((state) => state.product.filtertedProducts);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const [productsData, setproductsData] = useState(null);
+  const { data, error, loading } = useProducts(
+    "https://dummyjson.com/products"
+  );
 
-    const filtertedData = useSelector((state )=> state.product.filtertedProducts);
-     const [searchTerm, setSearchTerm] = useState("");
-     
-    const [productsData, setproductsData] = useState(null);
-    const {data, error, loading} = useProducts('https://dummyjson.com/products');
-
-
-
-    useEffect(()=>{
-        if(data && data.products){
-            setproductsData(data.products);
-
-           dispatch(setProducts(data.products))
-          
-        }
-
-          
-    },[data,dispatch])
-
- 
-
-      // Apply search from URL after products are loaded
+  // Set products in state and Redux store after fetching
   useEffect(() => {
     if (data && data.products) {
-      dispatch(filterProducts(search || "")); 
+      setproductsData(data.products);
+      dispatch(setProducts(data.products));
+    }
+  }, [data, dispatch]);
+
+  // Apply search from URL after products are loaded
+  useEffect(() => {
+    if (data && data.products) {
+      dispatch(filterProducts(search || ""));
     }
   }, [search, data, dispatch]);
 
-
-     const handleKeyDown =(e)=>{
- if (e.key === "Enter") {
+  // Handle search input enter key
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
       e.preventDefault();
-      
-        dispatch(filterProducts(searchTerm));
-        
-      
+      dispatch(filterProducts(searchTerm));
     }
-  }
+  };
 
-
+  // Show error message if error occurs
   if (error) return <ErrorMessage error={error} />;
 
+  // Skeleton loader for loading state
   const SkeletonCard = () => (
     <div className="bg-white rounded-xl shadow-md overflow-hidden w-64 h-[420px] flex flex-col animate-pulse">
       <div className="h-40 w-full bg-gray-200"></div>
@@ -85,63 +76,46 @@ function ProductList(){
     </div>
   );
 
+  return (
+    <div className="min-h-screen bg-white pt-25 pb-10">
+      {/* Search Bar */}
+      <div className="relative w-60 sm:w-40 md:w-74 lg:w-100 mx-auto">
+        <input
+          type="text"
+          className="w-full  text-gray-700 rounded-3xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 border border-gray-300 focus:ring-indigo-500 shadow-md"
+          placeholder="Search by title or category..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
+        </div>
+      </div>
 
-    return (
-
-        <div className='min-h-screen bg-white pt-25 pb-10'>
-
-         <div className="relative w-60 sm:w-40 md:w-74 lg:w-100 mx-auto">
-              <input
-                type="text"
-                className="w-full  text-gray-700 rounded-3xl pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 border border-gray-300 focus:ring-indigo-500 shadow-md"
-                placeholder="Search by title or category..."
-                onChange={(e)=>setSearchTerm(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
-              </div>
-            </div>
-
-
-       <section
-  id="Projects"
-  className="pt-15 flex flex-col items-center justify-center"
->
-
-             <div
-    className="
-      grid gap-10
-      grid-cols-1 md:grid-cols-2 lg:grid-cols-4
-      justify-items-center
-      w-full max-w-screen-xl px-6
-    "
-  >
-    {loading
-            ? Array.from({ length: 8 }).map((_, idx) => <SkeletonCard key={idx} />)
-            :filtertedData.map((item, idx) => (
-    <ProductItem  key={idx} product={item} /> 
-    ))}
-  </div>
-            
-        
-
-        </section>
-
-            </div>
-    )
-
-
-    
-
-
-
-     
-
-
- 
-
-    
+      {/* Products Grid Section */}
+      <section
+        id="Projects"
+        className="pt-15 flex flex-col items-center justify-center"
+      >
+        <div
+          className="
+            grid gap-10
+            grid-cols-1 md:grid-cols-2 lg:grid-cols-4
+            justify-items-center
+            w-full max-w-screen-xl px-6
+          "
+        >
+          {loading
+            ? Array.from({ length: 8 }).map((_, idx) => (
+                <SkeletonCard key={idx} />
+              ))
+            : filtertedData.map((item, idx) => (
+                <ProductItem key={idx} product={item} />
+              ))}
+        </div>
+      </section>
+    </div>
+  );
 }
 
 export default ProductList;

@@ -9,7 +9,8 @@ function Checkout() {
   return (
     <div className=" inset-0 p-4 flex justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full  overflow-auto pt-20">
       <div className="modal-content w-full max-w-2xl bg-white shadow-lg rounded-lg sm:p-8 p-4 relative">
-        {/* Header */}
+        
+        {/* ================= Header Section ================= */}
         <div className="flex items-center pb-3 border-b border-gray-300">
           <button
             onClick={() => navigate("/Cart")}
@@ -23,9 +24,10 @@ function Checkout() {
           </h3>
         </div>
 
-        {/* Order Summary */}
+        {/* ================= Order Summary Section ================= */}
         <div className="my-3">
-          {/* Order Items */}
+          
+          {/* ---- Order Items List ---- */}
           <div className="space-y-4 mb-8">
             {items?.map((item) => (
               <div
@@ -57,12 +59,14 @@ function Checkout() {
             ))}
           </div>
 
-          {/* Delivery Details */}
+          {/* ================= Delivery Details Section ================= */}
           <div className="mt-0">
             <form>
               <h4 className="text-lg text-slate-900 font-semibold mb-6">
                 Delivery Details
               </h4>
+
+              {/* ---- Input Fields ---- */}
               <div className="grid md:grid-cols-2 gap-y-6 gap-x-4 mb-8">
                 <input
                   type="text"
@@ -106,6 +110,7 @@ function Checkout() {
                 />
               </div>
 
+              {/* ---- Order Price Summary ---- */}
               <div className="bg-gray-100 rounded p-6">
                 <ul className="text-slate-500 font-medium divide-y divide-gray-300">
                   <li className="flex flex-wrap gap-4 text-sm pb-4">
@@ -132,11 +137,13 @@ function Checkout() {
                 </ul>
               </div>
 
-              {/* Payment Section */}
+              {/* ================= Payment Section ================= */}
               <div className="mt-8">
                 <h4 className="text-lg text-slate-900 font-semibold mb-6">
                   Payment
                 </h4>
+
+                {/* ---- Payment Method Option ---- */}
                 <div className="bg-gray-100 p-4 rounded-md border border-gray-300 max-w-sm">
                   <div className="flex items-center">
                     <input
@@ -163,7 +170,7 @@ function Checkout() {
           </div>
         </div>
 
-        {/* Footer */}
+        {/* ================= Footer Section (Buttons) ================= */}
         <div className="border-t border-gray-300 pt-8 flex flex-wrap gap-4">
           <button
             type="button"
