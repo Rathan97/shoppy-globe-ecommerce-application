@@ -7,7 +7,7 @@ function Footer() {
 
         {/* ---- Brand Section ---- */}
         <div className="flex justify-center items-center text-teal-300  text-2xl font-bold mb-4">
-          <img src="../src/assets/brandicon.png" alt="icon" className="h-14 mt-1" />
+          <img src="../src/assets/brandicon1.png" alt="icon" className="h-9 mr-2 mt-1" />
           <span>ShoppyGlobe</span>
         </div>
 

@@ -1,10 +1,10 @@
-import {
-  removeItem,
-  increaseQuantity,
-  decreaseQuantity,
-} from "../redux/cartSlice.js";
+
+
+import { removeItemFromDB,updateQuantityInDB } from "../utils/cartApis.js";
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 
 function CartItem(props) {
   // Initialize Redux dispatch and navigation hooks
@@ -23,7 +23,7 @@ function CartItem(props) {
               src={props.item.thumbnail}
               alt={props.item.title}
               className="w-full h-full object-contain"
-              onClick={() => navigate(`/ProductDetails/${props.item.id}`)}
+              onClick={() => navigate(`/ProductDetails/${props.item.productID}`)}
               loading="lazy"
             />
           </div>
@@ -39,7 +39,7 @@ function CartItem(props) {
 
             {/* Display total price based on quantity */}
             <h4 className="text-base font-semibold text-slate-900 mt-3">
-              ₹{(Number(props.item.price) * props.qty).toFixed(2)}
+              ₹{props.item.price}
             </h4>
           </div>
         </div>
@@ -49,7 +49,8 @@ function CartItem(props) {
           {/* Remove item button */}
           <button
             type="button"
-            onClick={() => dispatch(removeItem(props.item.id))}
+            onClick={() => {
+              dispatch(removeItemFromDB(props.item.productID))}}
             className="mt-3 font-semibold text-red-500 text-xs cursor-pointer mr-2"
           >
             <i className="fa-solid fa-trash text-red-700 text-[16px] text-end"></i>
@@ -59,7 +60,7 @@ function CartItem(props) {
           <div className="flex props.items-center px-2 w-20 py-1.5 border border-gray-300 text-slate-900 text-xs font-medium rounded-md sm:mt-6">
             {/* Decrease quantity (disabled when qty = 1) */}
             <button
-              onClick={() => dispatch(decreaseQuantity(props.item.id))}
+              onClick={() => dispatch(updateQuantityInDB(props.item.productID,-1))}
               className={
                 props.qty === 1 ? "cursor-not-allowed" : "cursor-pointer"
               }
@@ -73,11 +74,11 @@ function CartItem(props) {
 
             {/* Increase quantity (disabled when qty = 5) */}
             <button
-              onClick={() => dispatch(increaseQuantity(props.item.id))}
+              onClick={() => dispatch(updateQuantityInDB(props.item.productID,1))}
               className={
-                props.qty === 5 ? "cursor-not-allowed" : "cursor-pointer"
+                props.qty === props.item.stock ? "cursor-not-allowed" : "cursor-pointer"
               }
-              disabled={props.qty === 5}
+              disabled={props.qty === props.item.stock}
             >
               <i className="fa-solid fa-plus font-bold"></i>
             </button>

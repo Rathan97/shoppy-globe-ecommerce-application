@@ -1,14 +1,26 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchDataFromDB } from "../utils/cartApis.js";
 import CartItem from "./CartItem.jsx";
+import { useEffect, useRef } from "react";
 
 function Cart() {
   // Initialize navigation hook
   const navigate = useNavigate();
+    const dispatch = useDispatch();
 
   // Access cart items from Redux store
   const productsCart = useSelector((store) => store.cart.items);
-  console.log(productsCart);
+
+
+  const hasShownToast = useRef(false);
+
+   useEffect(() => {
+    if(hasShownToast.current) return
+    hasShownToast.current = true;
+    // dispatch the function when the page loads
+    dispatch(fetchDataFromDB(navigate));
+  }, [dispatch]);
 
   // Calculate subtotal (price × quantity)
   const subtotal = productsCart.reduce((acc, item) => {
@@ -47,7 +59,7 @@ function Cart() {
           ) : (
             productsCart.map((item) => {
               const qty = item.quantity ?? 1;
-              return <CartItem key={item.id} qty={qty} item={item} />;
+              return <CartItem key={item.userID} qty={qty} item={item} />;
             })
           )}
         </div>

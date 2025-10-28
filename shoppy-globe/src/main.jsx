@@ -14,6 +14,8 @@ const Cart = lazy(() => import("./components/Cart.jsx"));
 const NotFound = lazy(() => import("./components/NotFound.jsx"));
 const Ordersuccess = lazy(() => import("./components/Ordersuccess.jsx"));
 const Checkout = lazy(() => import("./components/Checkout.jsx"));
+const Login = lazy(()=> import("./components/Login.jsx"))
+const Signup = lazy(()=> import("./components/Signup.jsx"))
 
 // Define application routes
 const appRoute = createBrowserRouter([
@@ -28,6 +30,24 @@ const appRoute = createBrowserRouter([
     children: [
       // Home page route
       {
+        path: "/Login",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Login />
+          </Suspense>
+        ),
+      },
+
+       {
+        path: "/register",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Signup />
+          </Suspense>
+        ),
+      },
+
+       {
         path: "/",
         element: (
           <Suspense fallback={<LoadingSpinner />}>

@@ -3,11 +3,13 @@ import cartReducer from "./cartSlice.js";
 import productReducer from "./productSlice.js";
 
 
+
 const appStore = configureStore({
     reducer : {
 
         cart:cartReducer,
         product:productReducer,
+
 
     }
 })

@@ -31,7 +31,7 @@ function Checkout() {
           <div className="space-y-4 mb-8">
             {items?.map((item) => (
               <div
-                key={item.id}
+                key={item.userID}
                 className="flex justify-between items-center border-b border-gray-300 pb-3"
               >
                 <div className="flex items-center gap-4">

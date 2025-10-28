@@ -2,29 +2,34 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useProducts from "../utils/useProducts";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/cartSlice";
+import { addItemToDB } from "../utils/cartApis.js";
 import ErrorMessage from "./Errormessage.jsx";
+
 
 function ProductDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { data, error, loading } = useProducts(
-    `https://dummyjson.com/products/${id}`
+    `http://localhost:5100/api/products/${id}`
   );
+ 
+ 
   const [productData, setProductData] = useState(null);
   const [mainImage, setMainImage] = useState("");
 
   // Add product to cart
   const addToCart = (item) => {
-    dispatch(addItem(item));
+
+    dispatch(addItemToDB(item[0]));
+    
   };
 
   // Update state when product data is fetched
   useEffect(() => {
     if (data) {
-      setProductData(data);
-      if (data.images && data.images.length > 0) {
-        setMainImage(data.images[0]);
+      setProductData(data[0]);
+      if (data[0].images && data[0].images.length > 0) {
+        setMainImage(data[0].images[0]);
       }
     }
   }, [data]);

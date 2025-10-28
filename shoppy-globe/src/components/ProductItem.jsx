@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItem } from "../redux/cartSlice";
+import { addItemToDB } from "../utils/cartApis.js";
+
 
 function ProductItem({ product }) {
+
   const dispatch = useDispatch();
 
   const addToCart = (item) => {
-    dispatch(addItem(item));
+
+  
+    dispatch(addItemToDB(item));
+    
+
   };
 
   const renderStars = (rating) => {

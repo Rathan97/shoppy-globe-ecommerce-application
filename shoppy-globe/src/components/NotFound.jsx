@@ -21,7 +21,7 @@ function  NotFound() {
 
         {/* Display extra error info if available */}
         <p className="text-gray-500 mt-5">
-          Sorry, Invalid Route {routeError && routeError.error.message}
+          Sorry, Invalid Route {routeError && routeError?.error?.message}
         </p>
 
         {/* Back to Home Button */}

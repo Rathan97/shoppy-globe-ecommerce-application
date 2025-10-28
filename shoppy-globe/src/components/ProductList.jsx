@@ -17,20 +17,24 @@ function ProductList() {
 
   const [productsData, setproductsData] = useState(null);
   const { data, error, loading } = useProducts(
-    "https://dummyjson.com/products"
+    "http://127.0.0.1:5100/api/products"
   );
+
+
+
+ 
 
   // Set products in state and Redux store after fetching
   useEffect(() => {
-    if (data && data.products) {
-      setproductsData(data.products);
-      dispatch(setProducts(data.products));
+    if (data ) {
+      setproductsData(data);
+      dispatch(setProducts(data));
     }
   }, [data, dispatch]);
 
   // Apply search from URL after products are loaded
   useEffect(() => {
-    if (data && data.products) {
+    if (data ) {
       dispatch(filterProducts(search || ""));
     }
   }, [search, data, dispatch]);
