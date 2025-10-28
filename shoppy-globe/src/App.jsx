@@ -5,7 +5,8 @@ import appStore from './redux/store.js'
 import Header from './components/Header'
 
 import Footer from './components/Footer.jsx'
-import ProductList from './components/ProductList.jsx'
+import {Suspense} from 'react'
+import LoadingSpinner from './components/LoadingSpinner.jsx'
 
 
 
@@ -18,7 +19,11 @@ function App() {
     <Provider store={appStore}>
 
       <Header />
+      <Suspense fallback={<LoadingSpinner />}>
+       
+     
       <Outlet />
+       </Suspense>
       <Footer />
       </Provider>
 
